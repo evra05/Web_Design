@@ -1,0 +1,62 @@
+
+/* How Silent Stories Works Section */
+.how-it-works {
+    margin-top: 20px;
+    padding: 20px;
+    text-align: center;
+}
+
+.how-it-works h2 {
+    color: #000000;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
+
+.how-it-works p {
+    color: #000000;
+    font-size: 1em;
+    margin-bottom: 30px;
+}
+
+.steps {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.step {
+    flex: 1;
+    max-width: 350px;
+    margin: 10px;
+    padding: 20px;
+}
+
+.step h3 {
+    color: #0228fd;
+    text-align: left;
+    font-size: 1.9em;
+    margin-bottom: 10px;
+}
+
+.step p {
+    text-align: left;
+    color: #000000;
+    font-size: 1em;
+}
+
+/* Buttons */
+a.button {
+    display: inline-block;
+    padding: 12px 30px;
+    background: #0021dd;
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    border-radius: 5px;
+    margin: 10px;
+    transition: background 0.3s ease;
+}
+
+a.button:hover {
+    background: #1f37c0;
+}

@@ -1,0 +1,419 @@
+/* Main Container Styling */
+.container {
+    display: flex;
+    flex-direction: row; /* Align the story feed and related topics side by side */
+    justify-content: space-between; /* Space elements apart */
+    gap: 20px;
+    max-width: 1100px; /* Limit the container's width */
+    margin: 20px auto; /* Center the container */
+    padding: 1em;
+    background: none;
+    box-shadow: none;
+    border: none;
+}
+
+/* Story Feed and Input Container Styling */
+.story-feed-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 70%; 
+    max-width: 700px;
+}
+
+
+/* Bookmark Icon Styling */
+.bookmark-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    z-index: 10;
+    transition: transform 0.3s ease, filter 0.3s ease; /* Smooth transition for transform and color */
+}
+
+.bookmark-icon:hover {
+    transform: scale(1.3); /* Scale up the icon on hover */
+}
+
+/* Change color when clicked */
+.bookmark-icon.active {
+    filter: hue-rotate(200deg) brightness(1.2); /* Apply a blue hue */
+}
+
+
+.story-feed {
+    position: relative;
+    flex: 1; /* Adjust space distribution */
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.299);
+    max-width: 700px;
+    width: 100%;
+}
+
+/* Story Feed Styling */
+.story-feed main {
+    background: rgb(255, 255, 255);
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.192);
+    border-radius: 10px;
+    margin-top: 10px; /* Keep a slight gap from the navbar */
+
+    text-align: justify;
+}
+
+/* Related Topics Styling (Saved Stories) */
+.related-topics {
+    flex: 0 0 300px; /* Fixed width for the sidebar */
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 120px;
+    height: fit-content; 
+    margin-top: 0; 
+}
+
+
+
+/* Related Topics Title */
+.related-topics h3 {
+    color: #000000;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+/* List Styling for Saved Stories */
+.related-topics ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Styling for each list item (Individual saved story items) */
+.related-topics li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 5px;
+}
+
+/* Increase the width of the title container */
+.title-container {
+    width: 100%; /* Make title container take up the full available width */
+    padding: 10px; /* Add some padding for better appearance */
+    background-color: #f9f9f9; /* Light background color */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Light shadow */
+}
+
+/* Modern Hover Effect for each title container */
+.title-container:hover {
+    background-color: #f0f8ff; /* Light background on hover */
+    transform: translateX(5px); /* Subtle slide effect to the right */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Soft shadow on hover */
+}
+
+/* Topic Title Styling (Color, size, weight) */
+.related-topics .topic-title {
+    color: #0021dd;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+/* Hover effect on Topic Title */
+.related-topics .topic-title:hover {
+    color: #0061f2;
+}
+
+/* Link Styling */
+.related-topics a {
+    text-decoration: none;
+}
+
+.related-topics a:hover {
+    text-decoration: none;
+}
+
+
+/* Input Container Styling */
+.input-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.input-box {
+    flex: 1;
+    background-color: #f0f0f0; /* Light gray input box */
+    border: none;
+    border-radius: 20px;
+    padding: 10px 15px;
+    color: #333; /* Dark text */
+    font-size: 14px;
+    min-width: 200px; /* Prevent input from becoming too small */
+}
+
+.input-box::placeholder {
+    color: #888888; /* Subtle gray for placeholder text */
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+.action-btn {
+    padding: 10px 20px; /* Adjust padding for a comfortable size */
+    font-size: 16px; /* Medium font size for readability */
+    font-weight: 500; /* Slightly bold for emphasis */
+    border: none; /* Remove default border */
+    border-radius: 25px; /* Rounded corners for a modern look */
+    background: linear-gradient(135deg, #3B82F6, #2563EB); /* Green gradient */
+    color: white; /* White text for contrast */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    cursor: pointer; /* Pointer cursor for clickability */
+    transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.action-btn:hover {
+    background: linear-gradient(135deg,  #2563EB, #1D4ED8); /* Darker gradient on hover */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Slightly larger shadow on hover */
+    transform: translateY(-2px); /* Lift effect on hover */
+}
+
+.action-btn:active {
+    transform: translateY(0); /* Restore to original position on click */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reduce shadow when clicked */
+}
+
+
+/*Text*/
+.title {
+    font-family: 'Roboto', sans-serif; /* Modern and clean font */
+    font-size: 1.5em; /* Smaller size */
+    font-weight: 500;
+    text-align: center;
+    color: #4a4a4a; /* Subtle dark gray for modern look */
+    margin-bottom: 15px;
+    padding: 5px;
+    border-bottom: 2px solid #6c8ad1; /* A thin, modern underline */
+}
+
+/*Story Section*/
+.story-content {
+    padding: 20px;
+}
+
+.story-title {
+    text-align: center;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.story-content p {
+    text-align: center;
+    line-height: 1.6;
+    color: #333; /* Adjust color if needed */
+}
+
+.story-section {
+    margin: 20px 0;
+}
+
+.story-content p {
+    font-size: 1em;
+    line-height: 1.6;
+    color: #333;
+}
+
+
+.story-content {
+    max-width: 800px;
+    margin: 0 auto; /* Center the content */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Optional background for contrast */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional shadow */
+}
+
+
+.story-actions {
+    display: flex;
+    gap: 10px; /* Space between buttons */
+}
+
+.comment-btn, .upvote-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px; /* Space between icon and text */
+    padding: 6px 12px; /* Compact size */
+    font-size: 14px;
+    border: none;
+    border-radius: 20px; /* Rounded edges */
+    background: linear-gradient(135deg, #3b82f6, #2563eb); /* Gradient background */
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    cursor: pointer;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 10px; /* Add top margin to the buttons */
+}
+
+.comment-btn img, .upvote-btn img {
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+}
+
+.comment-btn:hover, .upvote-btn:hover {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8); /* Darker gradient on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* More prominent shadow on hover */
+}
+
+.comment-btn:active, .upvote-btn:active {
+    transform: scale(0.98); /* Slight scale down on click for interaction */
+}
+
+.upvote-count {
+    font-size: 14px; /* Match font size for consistency */
+    margin-left: 2px; /* Small space between text and number */
+}
+.hidden {
+    display: none;
+}
+
+/* Main container for the comment section */
+.comment-section {
+    max-width: 800px;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+    text-align: left;
+}
+
+.comment-section h3 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+/* Scrollable container for the list of comments */
+.comment-list {
+    max-height: 200px; /* Set a fixed height for scrolling */
+    overflow-y: auto; /* Enable vertical scrolling */
+    display: flex;
+    flex-direction: column; /* Stack comments vertically */
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-right: 10px; /* Add padding to avoid overlap with scrollbar */
+}
+
+/* Styling for individual comment items */
+.comment-item {
+    width: 100%;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.comment-author {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.comment-text {
+    color: #555;
+    font-size: 1em;
+    line-height: 1.5;
+    margin: 0 0 5px;
+}
+
+.comment-timestamp {
+    color: #999;
+    font-size: 0.85em;
+    margin-top: 5px;
+}
+
+/* Input and button section for adding comments */
+.comment-input-section {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.comment-input-section input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.comment-input-section button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+.comment-input-section button:hover {
+    background-color: #0056b3;
+}
+
+
+/* Suggestions Box Styling */
+.suggestions-box {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 10px;
+    position: absolute;
+    width: calc(100% - 20px); /* Ensure the suggestions box width matches search input */
+    top: 100%; /* Position it just below the search bar */
+    left: 0;
+    z-index: 999; /* Ensure it's above other elements */
+    margin-top: 5px;
+}
+
+/* Styling for each suggestion */
+.suggestions-box a {
+    display: block;
+    padding: 12px;
+    color: #0021dd; /* Bright blue to match theme */
+    font-size: 14px;
+    text-decoration: none;
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Hover effect for each suggestion */
+.suggestions-box a:hover {
+    background-color: #f0f8ff; /* Light background to match the theme */
+    color: #0061f2; /* Slightly lighter blue on hover */
+    transform: translateX(5px); /* Subtle slide effect */
+}
+
+/* Suggestions box appearance when no suggestions */
+.suggestions-box.hidden {
+    display: none;
+}
+
+

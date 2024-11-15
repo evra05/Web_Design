@@ -1,0 +1,27 @@
+.container {
+    max-width: 800px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+}
+
+.container h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #00796b;
+}
+
+.container p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+}
+
+.container h1 + p {
+    margin-top: 1rem;
+    font-weight: 400;
+}
+

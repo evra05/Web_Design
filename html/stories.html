@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silent Stories</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Nunito:wght@400;700&family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/stories.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="/javascript/stories.js" defer></script>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-left">
+            <a class="navbar-brand" href="index.html">
+                <img src="/image/logo.png" alt="Logo" class="logo-image">
+                <span class="bold-text large-text">Silent Stories</span>
+            </a>
+        </div>
+        <!-- Search Bar -->
+        <div class="navbar-center">
+            <form onsubmit="event.preventDefault(); filterStories();" class="search-form">
+                <input type="search" id="searchInput" placeholder="Search stories..." aria-label="Search stories" class="search-input" oninput="showSuggestions()">
+                <button type="button" onclick="filterStories()" class="search-button">
+                    <img src="/icons/search.png" alt="Search Icon" class="search-icon">
+                </button>
+            </form>
+            <div id="suggestionsBox" class="suggestions-box hidden"></div> <!-- Suggestions Box -->
+        </div>
+
+        <div class="navbar-right">
+            <a href="AboutPage.html" class="about-us-link">About Us</a>
+            <a href="submit-story.html" class="button">Submit Story</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="story-feed-wrapper" id="storyFeed">
+            <!-- Submitted stories will be dynamically inserted here -->
+        </div>
+        <div class="related-topics">
+            <h3>Saved Stories</h3>
+            <ul id="saved-stories-list">
+                <li>
+                    <div class="title-container">
+                        <a href="javascript:void(0);" onclick="scrollToStory('story-1')" class="topic-title">A Letter to My Younger Self</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="title-container">
+                        <a href="javascript:void(0);" onclick="scrollToStory('story-2')" class="topic-title">The Art of Letting Go</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Silent Stories | <a href="PrivacyPolicy.html">Privacy Policy</a> | <a href="TermsOfService.html">Terms of Service</a></p>
+    </footer>
+
+    <script>
+        // Sample function to initialize localStorage with some stories
+        function initializeStories() {
+            const sampleStories = [
+                {
+                    title: "The Day I Found My Voice",
+                    story: "For most of my life, I was the quiet one. I was always there in the background, listening, observing, but rarely speaking up. Then one day, during a team meeting at work, I raised my hand, spoke up, and shared my ideas. That moment changed everything.",
+                    timestamp: new Date().toLocaleString()
+                },
+                {
+                    title: "The Art of Letting Go",
+                    story: "I held on to a friendship for years, even when it no longer felt right. One day, I decided to have an honest conversation with my friend. Letting go was painful, but it was also freeing.",
+                    timestamp: new Date().toLocaleString()
+                },
+                {
+                    title: "A Letter to My Younger Self",
+                    story: "Dear Younger Me, you worry so much. But let me tell you something: you’re stronger than you think. You’ll make mistakes, you’ll face tough days, but you’ll come out on the other side wiser.",
+                    timestamp: new Date().toLocaleString()
+                },
+                {
+                    title: "Rediscovering Joy in the Little Things",
+                    story: "Recently, I went through a difficult time that left me feeling emotionally drained. One day, I decided to take a walk, hoping the fresh air would help clear my mind. It made me realize how much I had been missing by focusing only on the big, overwhelming things in life.",
+                    timestamp: new Date().toLocaleString()
+                }
+            ];
+            
+            localStorage.setItem("stories", JSON.stringify(sampleStories));
+        }
+
+        // Uncomment the following line to initialize stories the first time you run the code
+        // initializeStories();
+
+        function displayStories() {
+            const stories = JSON.parse(localStorage.getItem("stories")) || [];
+            console.log("Loaded stories:", stories);
+
+            const feed = document.getElementById("storyFeed");
+            feed.innerHTML = ""; // Clear existing content
+
+            stories.forEach((story, index) => {
+                const storyElement = document.createElement("article");
+                storyElement.classList.add("story-feed");
+                storyElement.id = `story-${index + 1}`; // Assign a unique ID
+
+                storyElement.innerHTML = `
+                    <img src="/icons/bookmark.png" alt="Bookmark" class="bookmark-icon" onclick="toggleBookmark(this, '${storyElement.id}')">
+                    <h1 class="title">${story.title}</h1>
+                    <main>${story.story}</main>
+                    <div class="story-actions">
+                        <button class="comment-btn" onclick="toggleCommentSection(this)" data-comment-count="0">
+                            <img src="/icons/comment.png" alt="Comment" class="icon"> 
+                            <span class="comment-count">0</span>
+                        </button>
+                        <button class="upvote-btn" onclick="handleUpvote(this)">
+                            <img src="/icons/upvote.svg" alt="Upvote" class="icon"> 
+                            <span class="upvote-count">0</span>
+                        </button>
+                    </div>
+                    <div class="comment-section hidden">
+                        <h3>Comments</h3>
+                        <div class="comment-list"></div>
+                        <div class="comment-input-section">
+                            <input type="text" placeholder="Add a comment...">
+                            <button onclick="addComment(this)">Post</button>
+                        </div>
+                    </div>
+                `;
+                
+                feed.appendChild(storyElement);
+            });
+        }
+
+        window.onload = function() {
+ displayStories();
+            loadSavedStories();
+        };
+
+        function showSuggestions() {
+            const query = document.getElementById("searchInput").value.toLowerCase();
+            const suggestionsBox = document.getElementById("suggestionsBox");
+            const stories = document.querySelectorAll(".story-feed");
+            const suggestionTitles = [];
+
+            suggestionsBox.innerHTML = ''; // Clear previous suggestions
+
+            if (query.length > 0) {
+                stories.forEach(story => {
+                    const title = story.querySelector(".title").innerText.toLowerCase();
+                    if (title.includes(query)) {
+                        suggestionTitles.push(story.querySelector(".title").innerText);
+                    }
+                });
+
+                if (suggestionTitles.length > 0) {
+                    suggestionsBox.style.display = "block"; // Show suggestions
+                    suggestionTitles.forEach(title => {
+                        const suggestionItem = document.createElement("a");
+                        suggestionItem.textContent = title;
+                        suggestionItem.href = "#";
+                        suggestionItem.onclick = function() {
+                            document.getElementById("searchInput").value = title; // Set input value to clicked suggestion
+                            suggestionsBox.style.display = "none"; // Hide suggestions after selection
+                            filterStories(); // Trigger the filter function
+                        };
+                        suggestionsBox.appendChild(suggestionItem);
+                    });
+                } else {
+                    suggestionsBox.style.display = "none"; // Hide if no suggestions
+                }
+            } else {
+                suggestionsBox.style.display = "none"; // Hide if input is empty
+            }
+        }
+
+        function filterStories() {
+            const query = document.getElementById("searchInput").value.toLowerCase();
+            const stories = document.querySelectorAll(".story-feed");
+
+            stories.forEach(story => {
+                const title = story.querySelector(".title").innerText.toLowerCase();
+                const content = story.querySelector("main").innerText.toLowerCase();
+
+                // Show or hide story based on whether it matches the search query
+                if (title.includes(query) || content.includes(query)) {
+                    story.style.display = "block";  // Show matching stories
+                } else {
+                    story.style.display = "none";  // Hide non-matching stories
+                }
+            });
+        }
+
+        function toggleBookmark(bookmarkElement, storyId) {
+            const storyTitle = document.getElementById(storyId).querySelector('.title').innerText;
+            const storyContent = document.getElementById(storyId).querySelector('main').innerText;
+
+            let savedStories = JSON.parse(localStorage.getItem('savedStories')) || [];
+            const storyIndex = savedStories.findIndex(story => story.id === storyId);
+
+            if (storyIndex > -1) {
+                savedStories.splice(storyIndex, 1);
+                bookmarkElement.src = "/icons/bookmark.png";  // Change to the default bookmark icon
+            } else {
+                savedStories.push({ id: storyId, title: storyTitle, content: storyContent });
+                bookmarkElement.src = "/icons/bookmarked.png";  // Change to the bookmarked icon
+            }
+
+            localStorage.setItem('savedStories', JSON.stringify(savedStories));
+            loadSavedStories();
+        }
+
+        function loadSavedStories() {
+            const savedStories = JSON.parse(localStorage.getItem('savedStories')) || [];
+            const savedStoriesList = document.getElementById("saved-stories-list");
+
+            savedStoriesList.innerHTML = '';
+
+            if (savedStories.length > 0) {
+                savedStories.forEach(story => {
+                    const listItem = document.createElement("li");
+                    listItem.innerHTML = `
+                        <div>
+                            <a href="javascript:void(0);" onclick="scrollToStory('${story.id}')">${story.title}</a>
+                        </div>
+                    `;
+                    savedStoriesList.appendChild(listItem);
+                });
+            } else {
+                savedStoriesList.innerHTML = "<p>No saved stories yet.</p>";
+            }
+        }
+
+        function scrollToStory(storyId) {
+            const storyElement = document.getElementById(storyId);
+            if (storyElement) {
+                storyElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        window.toggleCommentSection = function(button) {
+            const commentSection = button.closest('.story-feed').querySelector('.comment-section');
+            if (commentSection) {
+                commentSection.classList.toggle('hidden');
+            }
+        };
+
+        window.addComment = function(button) {
+            const commentSection = button.closest('.comment-section');
+            const commentInput = commentSection.querySelector('input[type="text"]');
+            const commentList = commentSection.querySelector('.comment-list');
+
+            if (commentInput.value.trim() !== '') {
+                const newComment = document.createElement('div');
+                newComment.className = 'comment-item';
+                newComment.innerHTML = `
+                    <p class="comment-author">Anonymous</p>
+                    <p class="comment-text">${commentInput.value}</p>
+                    <small class="comment-timestamp">${new Date().toLocaleString()}</small>
+                `;
+                commentList.appendChild(newComment);
+                commentInput.value = ''; // Clear input
+            }
+        };
+
+        window.handleUpvote = function(button) {
+            const upvoteCount = button.querySelector('.upvote-count');
+            let count = parseInt(upvoteCount.textContent, 10);
+            upvoteCount.textContent = count + 1;
+            button.disabled = true; // Optionally disable button
+        };
+    </script>
+
+</body>
+</html>

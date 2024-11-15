@@ -1,0 +1,46 @@
+/* Submit Story Box */
+.submit-story-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 600px; /* Maximum width */
+    min-width: 300px;
+    background-color: rgba(239, 239, 239, 0.8); 
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #333;
+    font-family: 'Arial', sans-serif;
+    z-index: 1000;
+}
+
+.submit-story-box label {
+    display: block;
+    margin-top: 10px;
+}
+
+.submit-story-box input,
+.submit-story-box textarea,
+.submit-story-box select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.submit-story-box button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #0021dd;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.submit-story-box button:hover {
+    background-color: #001bb5;
+}

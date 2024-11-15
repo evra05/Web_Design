@@ -1,0 +1,242 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  overflow-y: scroll;
+  overflow-x: hidden; /* Prevents horizontal scrolling */
+}
+
+/* Body */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+  color: #333;
+  margin: 0;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  background-image: url('/image/bg2.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  flex-direction: column;
+}
+
+/* Navbar styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: rgb(255, 255, 255);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+  font-family: 'Roboto', sans-serif;
+  border-bottom: 2px solid #e0e0e0;
+  background: rgb(255, 255, 255);  /* Adjust the alpha for transparency */
+  backdrop-filter: blur(10px);  /* Keep or adjust blur */
+  -webkit-backdrop-filter: blur(10px);  /* Ensure Safari support */
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+nav a {
+  color: #333; /* Darker color for better contrast */
+  text-shadow: none; /* Optional: Remove the glow effect */
+  transition: all 0.3s ease;
+}
+
+
+/* Style for larger and balanced logo */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Proportional scaling of logo */
+.logo-image {
+  width: 40px; /* Increase this value to make the logo larger */
+  height: auto; /* Maintains aspect ratio */
+  margin-right: 15px; /* Adds spacing between logo and text */
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-brand img {
+  margin-right: 10px;
+}
+
+.navbar-center {
+  flex-grow: 2;
+  display: flex;
+  justify-content: center;
+}
+
+.search-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 500px; /* Consistent width for both pages */
+  margin: 0 auto; /* Center the search bar horizontally */
+  padding: 10px 0; /* Adjust padding for consistent top spacing */
+}
+
+.search-input {
+  padding: 12px;
+  font-size: 18px;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  outline: none;
+  width: 100%; /* Ensure it takes the full width */
+}
+
+
+.search-button {
+  position: absolute;
+  right: 10px; /* Align the icon inside the search bar */
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.search-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.search-input:hover,
+.search-input:focus {
+  border: 1px solid #009688;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.about-us-link {
+  margin-right: 15px; /* Adds space between About Us and Submit */
+  font-size: 18px;
+  text-decoration: none;
+  color: #333;
+}
+
+.navbar-right .button {
+  margin-left: 15px;
+  background-color: #0021dd;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.navbar-right .button:hover {
+  background-color: #1f37c0;
+}
+
+.glass-header {
+  margin: 60px auto 0 auto; /* Center the header horizontally and add top margin */
+  padding: 20px;
+  z-index: 999; /* Ensure it's below the navbar */
+  width: 80%; /* Adjust width as needed */
+  max-width: 1200px; /* Optional: set a max width */
+  text-align: center; /* Center text inside the header */
+}
+
+.glass-header h1 {
+  margin: 0;
+  color: #0021dd;
+}
+
+/* Footer */
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f4f4f9;
+  color: #000000;
+  text-align: center;
+  padding: 10px 0;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  border-top: 1px solid #ddd;
+}
+
+footer a {
+  text-decoration: none;
+  color: #5c6bc0;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #303e8e;
+}
+
+/* For emphasis or quotes */
+blockquote, em, strong {
+  font-family: 'Merriweather', 'Playfair Display', serif;
+  font-style: italic;
+}
+
+/* Responsive typography */
+@media (max-width: 768px) {
+  h1 {
+      font-size: 2rem;
+  }
+
+  p.lead {
+      font-size: 1rem;
+  }
+
+  .story-feed article {
+      padding: 15px;
+  }
+}
+
+
+h1 {
+  color: #001a99; /* Darker blue for better contrast */
+  font-family: 'Roboto', 'Open Sans', sans-serif;
+  font-size: 2.5em;
+  margin-bottom: 25px; /* Increased bottom margin */
+}
+
+p.lead {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  color: #000000;
+}
+
+h2 {
+  font-family: 'Roboto', 'Open Sans', sans-serif;
+  font-size: 1.5em;
+  margin-bottom: 25px; /* Increased bottom margin */
+}
+
+.bold-text {
+  color: #000000;
+  font-weight: bold;
+}
+
+.large-text {
+  font-size: 1.5em;
+}
+
+.bold-text.large-text {
+  font-size: 20px; /* Make the text large enough to balance the bigger logo */
+}

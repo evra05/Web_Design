@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Your Story</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/submit-story.css">
+    <script src="/javascript/submit-story.js" defer></script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-left">
+      <a class="navbar-brand" href="index.html">
+        <img src="/image/logo.png" alt="Logo" class="logo-image">
+        <span class="bold-text large-text">Silent Stories</span>
+    </a>
+    </div>
+  
+    <div class="navbar-right">
+      <a href="AboutPage.html" class="about-us-link">About Us</a>
+      <a href="stories.html" class="button">View Story</a>
+    </div>
+  </nav>
+
+    <!-- Submit Story Box -->
+    <div class="submit-story-box">
+        <h2>Submit Your Story</h2>
+        <form id="story-form" onsubmit="return handleFormSubmit(event)">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required oninput="validateForm()">
+            
+            <label for="story">Your Story:</label>
+            <textarea id="story" name="story" rows="5" required oninput="validateForm()"></textarea>
+
+            <!-- Submit Button -->
+            <button type="submit" id="submitButton" disabled>Submit</button>
+        </form>
+        <p id="warningMessage" style="color: red; display: none;">Please fill in both fields.</p>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Silent Stories | <a href="PrivacyPolicy.html">Privacy Policy</a> | <a href="TermsOfService.html">Terms of Service</a></p>
+    </footer>
+
+    <script>
+        function handleFormSubmit(event) {
+        event.preventDefault(); // Prevent default form submission behavior
+
+        // Get form values
+        const title = document.getElementById("title").value;
+        const story = document.getElementById("story").value;
+
+        // Check if all fields are filled
+        if (title && story) {
+            // Create an object to hold the submitted story
+            const newStory = {
+                id: `story-${Date.now()}`, // Unique ID for each story
+                title: title,
+                story: story,
+                timestamp: new Date().toLocaleString(), // Use current timestamp
+            };
+
+            // Retrieve existing stories from localStorage
+            let stories = JSON.parse(localStorage.getItem("stories")) || [];
+
+            // Add the new story to the list
+            stories.push(newStory);
+
+            // Save the updated list back to localStorage
+            localStorage.setItem("stories", JSON.stringify(stories));
+
+            // Optionally, clear the form fields
+            document.getElementById("title").value = "";
+            document.getElementById("story").value = "";
+
+            // Optionally, reset the button state
+            validateForm();
+
+            // Redirect to ThankYou page after submission
+            window.location.href = "ThankYou.html";
+        } else {
+            // Show an alert or a message if fields are empty
+            document.getElementById("warningMessage").style.display = "block";
+        }
+    }
+
+    // Function to validate form fields and enable/disable the submit button
+    function validateForm() {
+        const title = document.getElementById("title").value;
+        const story = document.getElementById("story").value;
+        const submitButton = document.getElementById("submitButton");
+
+        // Enable submit button if both fields are filled
+        if (title && story) {
+            submitButton.disabled = false; // Enable the submit button
+            document.getElementById("warningMessage").style.display = "none"; // Hide warning
+        } else {
+            submitButton.disabled = true; // Disable the submit button
+            document.getElementById("warningMessage").style.display = "none"; // Hide warning
+        }
+    }
+
+    // Call validateForm on page load to check if button should be enabled or not
+    window.onload = validateForm;
+    </script>
+</body>
+</html>
